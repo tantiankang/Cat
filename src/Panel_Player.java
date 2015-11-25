@@ -11,13 +11,14 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
-public class Panel_Player extends JPanel implements KeyListener {
-	
+public class Panel_Player extends JPanel  {
+
 	public Panel_Player()
 	{
 		this.setBounds(500,250,100,100);
 		this.setFocusable(true);
 		this.setLayout(null);
+		addKeyListener(new MoveListener());
 	}
 	
 	protected void paintComponent(Graphics g)
@@ -32,41 +33,7 @@ public class Panel_Player extends JPanel implements KeyListener {
 		super.paintComponent(g);
 		g.drawImage(img,0,0,this);
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-			
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getKeyCode()==37)
-		{
-			System.out.println("the key is left"+this.getX());
-			this.setLocation(this.getX()-100, this.getY());
-
-			this.repaint();
-			this.revalidate();
-
-		}
-		if(e.getKeyCode()==39)
-		{
-			System.out.println("the key is right");
-		}
-		if(e.getKeyCode()==32)
-		{
-			System.out.println("the key is space");
-		}
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 
