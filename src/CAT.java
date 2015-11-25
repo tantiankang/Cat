@@ -16,8 +16,9 @@ public class CAT extends JFrame {
 		this.setVisible(true);
 		this.setLayout(null);
 		this.add(new Panel_Platform());
-		this.addKeyListener(new MoveListener());
-		this.add(new Panel_Player());
+		Panel_Player player = new Panel_Player();
+		this.add(player);
+		this.addKeyListener(player);
 		this.add(new Panel_Main());
 		timer.start();
 	}
