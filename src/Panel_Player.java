@@ -45,7 +45,10 @@ public class Panel_Player extends JPanel implements KeyListener {
 		if(e.getKeyCode()==37)
 		{
 			System.out.println("the key is left"+this.getX());
-			this.setBounds(this.getX()-100, this.getY(),100,100);
+			this.setLocation(this.getX()-100, this.getY());
+
+			this.repaint();
+			this.revalidate();
 
 		}
 		if(e.getKeyCode()==39)

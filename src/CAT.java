@@ -1,8 +1,12 @@
 import javax.swing.*;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class CAT extends JFrame {
-	
+	private Timer timer = new Timer(500, new TimerListener());
 	public CAT()
 	{
 		this.setTitle("Cat Shooter Game");
@@ -15,6 +19,18 @@ public class CAT extends JFrame {
 		this.addKeyListener(new Panel_Player());
 		this.add(new Panel_Player());
 		this.add(new Panel_Main());
+		timer.start();
+	}
+	
+	class TimerListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			repaint();
+			revalidate();
+
+		}
 	}
 
 }
