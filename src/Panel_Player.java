@@ -39,8 +39,9 @@ public class Panel_Player extends JPanel implements KeyListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			if(CAT.arrayPanel[][])
+			if(CAT.arrayPanel[getX()][getY()])
 			{
+				//System.out.println(getX() + " " + getY());
 				//do nothing
 			}
 			else
