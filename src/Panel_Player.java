@@ -17,7 +17,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 
 	public Panel_Player()
 	{
-		this.setBounds(500,250,100,100);
+		this.setBounds(45*CAT.xUnit,30*CAT.yUnit,5*CAT.xUnit,10*CAT.yUnit);
 		this.setLayout(null);
 	}
 	
@@ -39,9 +39,9 @@ public class Panel_Player extends JPanel implements KeyListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			if(CAT.arrayPanel[getX()][getY()])
+			if(CAT.arrayPanel[getX()/CAT.xUnit][getY()/CAT.yUnit])
 			{
-				//System.out.println(getX() + " " + getY());
+				System.out.println("cat can't move");
 				//do nothing
 			}
 			else

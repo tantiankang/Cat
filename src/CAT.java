@@ -31,6 +31,7 @@ public class CAT extends JFrame {
 				arrayPanel[i][j] = false;
 			}
 		}
+		
 					
 		//30,40 to 60,50
 		Panel_Platform platformMid = new Panel_Platform(30*xUnit,40*yUnit ,30*xUnit ,5*yUnit);
@@ -39,15 +40,22 @@ public class CAT extends JFrame {
 		Panel_Platform platformMidObstacle = new Panel_Platform(40*xUnit, 20*yUnit, 5*xUnit, 20*yUnit);
 		this.add(platformMidObstacle);
 		
-		for (int i = platformMid.getX(); i < (platformMid.getX() + platformMid.getWidth()); i++){
-			for (int j = platformMid.getY(); i < (platformMid.getY() + platformMid.getHeight()); i++){
+		for (int i = platformMid.getX()/xUnit; i < (platformMid.getX()/xUnit + platformMid.getWidth()/xUnit); i++){
+			for (int j = platformMid.getY()/yUnit; i < (platformMid.getY()/yUnit + platformMid.getHeight()/yUnit); i++){
 				arrayPanel[i][j] = true;
 			}
 		}
 		
-		for (int i = platformMidObstacle.getX(); i < (platformMidObstacle.getX() + platformMidObstacle.getWidth()); i++){
-			for (int j = platformMidObstacle.getY(); i < (platformMidObstacle.getY() + platformMidObstacle.getHeight()); i++){
+		for (int i = platformMidObstacle.getX()/xUnit; i < (platformMidObstacle.getX()/xUnit + platformMidObstacle.getWidth()/xUnit); i++){
+			for (int j = platformMidObstacle.getY()/yUnit; i < (platformMidObstacle.getY()/yUnit + platformMidObstacle.getHeight()/yUnit); i++){
 				arrayPanel[i][j] = true;
+			}
+		}
+		
+		for (int i = 0; i < 100; i++){
+			for (int j = 0; j < 80; j++){
+				if (arrayPanel[i][j])
+					System.out.println(1);
 			}
 		}
 		
