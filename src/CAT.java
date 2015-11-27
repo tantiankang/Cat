@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 
 public class CAT extends JFrame {
 	private Timer timer = new Timer(500, new TimerListener());
-	public static boolean arrayPanel[][] = new boolean[100][80];
-	public static int xUnit;
-	public static int yUnit;
+	public static boolean arrayPanel[][];
 	
 	public CAT()
 	{
@@ -22,40 +20,31 @@ public class CAT extends JFrame {
 		
 		System.out.println(getWidth());
 		System.out.println(getHeight());
-		
-		xUnit = getWidth()/100;
-		yUnit = getHeight()/80;
-		
-		for (int i = 0; i < 100; i++){
-			for (int j = 0; j < 80; j++){
+	
+		arrayPanel = new boolean[getWidth()][getHeight()];
+		for (int i = 0; i < getWidth(); i++){
+			for (int j = 0; j < getHeight(); j++){
 				arrayPanel[i][j] = false;
 			}
 		}
 		
 					
 		//30,40 to 60,50
-		Panel_Platform platformMid = new Panel_Platform(30*xUnit,40*yUnit ,30*xUnit ,5*yUnit);
+		Panel_Platform platformMid = new Panel_Platform(300, 300, 400 ,50);
 		this.add(platformMid);
 		
-		Panel_Platform platformMidObstacle = new Panel_Platform(40*xUnit, 20*yUnit, 5*xUnit, 20*yUnit);
+		Panel_Platform platformMidObstacle = new Panel_Platform(400, 200, 50, 100);
 		this.add(platformMidObstacle);
 		
-		for (int i = 30; i < (30 + 30); i++){
-			for (int j = 40; j < (40 + 5); j++){
+		for (int i = platformMid.getX(); i < (platformMid.getX() + platformMid.getWidth()); i++){
+			for (int j = platformMid.getY(); j < (platformMid.getY() + platformMid.getHeight()); j++){
 				arrayPanel[i][j] = true;
 			}
 		}
 		
-		for (int i = 40; i < (40+5); i++){
-			for (int j = 20; j < (20+20); j++){
+		for (int i = platformMidObstacle.getX(); i < (platformMidObstacle.getX() + platformMidObstacle.getWidth()); i++){
+			for (int j = platformMidObstacle.getY(); j < (platformMidObstacle.getY() + platformMidObstacle.getHeight()); j++){
 				arrayPanel[i][j] = true;
-			}
-		}
-		
-		for (int i = 0; i < 100; i++){
-			for (int j = 0; j < 80; j++){
-				if (arrayPanel[i][j])
-					System.out.println(i + " " + j);
 			}
 		}
 		
