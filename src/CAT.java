@@ -3,15 +3,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 
 public class CAT extends JFrame {
 	private Timer timer = new Timer(500, new TimerListener());
 	public static boolean arrayPanel[][] = new boolean[100][80];
 	
-	private int xUnit = getWidth()/100;
-	private int yUnit = getHeight()/80;
+	static{
+		for(int i = 0; i < 100; i++){
+			for(int j = 0; j < 80; j++){
+				arrayPanel[i][j] = false;
+			}
+		}
+	}
+	
+	public static int xUnit;{
+		xUnit = getWidth()/100;
+		System.out.println(xUnit);
+	}
+	public static int yUnit;{
+		yUnit = getHeight()/80;
+		System.out.println(yUnit);
+	}
 	
 	public CAT()
 	{
@@ -22,7 +35,6 @@ public class CAT extends JFrame {
 		this.setVisible(true);
 		this.setLayout(null);
 		
-		Arrays.fill(arrayPanel, false);
 		//30,40 to 60,50
 		Panel_Platform platformMid = new Panel_Platform(30*xUnit,40*yUnit ,30*xUnit ,5*yUnit);
 		this.add(platformMid);
