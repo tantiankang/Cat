@@ -8,16 +8,19 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.Timer;
 
 
-public class Panel_Player extends JPanel implements KeyListener{
-
+public class Panel_Player extends JPanel implements KeyListener,ActionListener{
+	int count=-1;
+	int stopCount =0;
 	public Panel_Player()
 	{
-		this.setBounds(800,200,100,100);
+		this.setBounds(500,200,100,100);
 		this.setLayout(null);
 	}
 	
@@ -39,23 +42,47 @@ public class Panel_Player extends JPanel implements KeyListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			if(CAT.arrayPanel[getX()][getY()])
-			{
-				System.out.println("cat can't move");
-				//do nothing
-			}
-			else
-			{
-				setLocation(getX()-10, getY());
-			}
+			int x;
+			int y;
+			boolean block = false;
+			for(int x1=getX();x1<getX()+getWidth();x1++)
+				for(int y1=getY();y1<getY()+getHeight();y1++)
+				{
+					  x=x1;
+					  y=y1;
+				      if(CAT.arrayPanel[x][y])
+					   {
+						 block=true;
+					   }
+ 
+				}
+			if(block==false)
+			setLocation(getX()-10, getY());
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
+			int x;
+			int y;
+			boolean block = false;
+			for(int x1=getX();x1<getX()+getWidth();x1++)
+				for(int y1=getY();y1<getY()+getHeight();y1++)
+				{
+					  x=x1;
+					  y=y1;
+				      if(CAT.arrayPanel[x][y])
+					   {
+						 block=true;
+					   }
+ 
+				}
+			if(block==false)
 			setLocation(getX()+10, getY());
 		}
-		if(e.getKeyCode() == KeyEvent.VK_SPACE)
+		if(e.getKeyCode() == KeyEvent.VK_UP)
 		{
-			System.out.println("the key is space");
+			   Timer timer = new Timer(50, this);
+			   timer.start();
+
 		}
 		
 	}
@@ -69,6 +96,47 @@ public class Panel_Player extends JPanel implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Timer time = (Timer)e.getSource();
+		
+		int x;
+		int y;
+		boolean block = false;
+		for(int x1=getX();x1<getX()+getWidth();x1++)
+			for(int y1=getY();y1<getY()+getHeight();y1++)
+			{
+				  x=x1;
+				  y=y1;
+			      if(CAT.arrayPanel[x][y])
+				   {
+					 block=true;
+				   }
+
+			}
+		if(block==false)
+		{
+			if(count<3)
+			{
+				setLocation(getX(),getY()-15);
+				count++;
+			}
+			else
+			{
+				setLocation(getX(),getY()+15);
+				stopCount++;
+			}
+			if(stopCount == 4)
+			{
+				time.stop();
+				stopCount =0;
+				count =-1;
+			}
+		}
+	
 		
 	}
 	
