@@ -40,14 +40,14 @@ public class CAT extends JFrame {
 		Panel_Platform platformMidObstacle = new Panel_Platform(40*xUnit, 20*yUnit, 5*xUnit, 20*yUnit);
 		this.add(platformMidObstacle);
 		
-		for (int i = platformMid.getX()/xUnit; i < (platformMid.getX()/xUnit + platformMid.getWidth()/xUnit); i++){
-			for (int j = platformMid.getY()/yUnit; i < (platformMid.getY()/yUnit + platformMid.getHeight()/yUnit); i++){
+		for (int i = 30; i < (30 + 30); i++){
+			for (int j = 40; j < (40 + 5); j++){
 				arrayPanel[i][j] = true;
 			}
 		}
 		
-		for (int i = platformMidObstacle.getX()/xUnit; i < (platformMidObstacle.getX()/xUnit + platformMidObstacle.getWidth()/xUnit); i++){
-			for (int j = platformMidObstacle.getY()/yUnit; i < (platformMidObstacle.getY()/yUnit + platformMidObstacle.getHeight()/yUnit); i++){
+		for (int i = 40; i < (40+5); i++){
+			for (int j = 20; j < (20+20); j++){
 				arrayPanel[i][j] = true;
 			}
 		}
@@ -55,7 +55,7 @@ public class CAT extends JFrame {
 		for (int i = 0; i < 100; i++){
 			for (int j = 0; j < 80; j++){
 				if (arrayPanel[i][j])
-					System.out.println(1);
+					System.out.println(i + " " + j);
 			}
 		}
 		
