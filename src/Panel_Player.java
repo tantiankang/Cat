@@ -18,7 +18,6 @@ public class Panel_Player extends JPanel implements KeyListener{
 	public Panel_Player()
 	{
 		this.setBounds(500,250,100,100);
-		this.setFocusable(true);
 		this.setLayout(null);
 	}
 	
@@ -40,7 +39,14 @@ public class Panel_Player extends JPanel implements KeyListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			setLocation(getX()-10, getY());
+			if(CAT.arrayPanel[][])
+			{
+				//do nothing
+			}
+			else
+			{
+				setLocation(getX()-10, getY());
+			}
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
