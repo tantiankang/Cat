@@ -48,11 +48,33 @@ public class CAT extends JFrame {
 			}
 		}
 		
-		Panel_Player player = new Panel_Player();
+		final Panel_Player player = new Panel_Player();
 		this.add(player);
 		this.addKeyListener(player);
 		this.add(new Panel_Main());
 		timer.start();
+		
+		Timer gravityTimer = new Timer(50, new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				for(int i = 0; i<10; i++){
+					if(player.isJumping == false){
+						if(arrayPanel[player.getX()][player.getY() + 1 + player.getHeight()] == false
+								&& arrayPanel[player.getX() + player.getWidth()][player.getY() + 1 + player.getHeight()] == false)
+							player.setLocation(player.getX(), player.getY()+1);
+					}
+					if(player.isJumping == true){
+						if(arrayPanel[player.getX()][player.getY() - 1 + player.getHeight()] == false
+								&& arrayPanel[player.getX() + player.getWidth()][player.getY() - 1 + player.getHeight()] == false)
+							player.setLocation(player.getX(), player.getY()-1);
+					}
+				}
+			}
+			
+		});
+		gravityTimer.start();
+		
 	}
 	
 	class TimerListener implements ActionListener

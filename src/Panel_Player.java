@@ -16,8 +16,11 @@ import javax.swing.Timer;
 
 
 public class Panel_Player extends JPanel implements KeyListener,ActionListener{
+
 	int count=-1;
 	int stopCount =0;
+	boolean isJumping;
+
 	public Panel_Player()
 	{
 		this.setBounds(500,200,100,100);
@@ -80,8 +83,22 @@ public class Panel_Player extends JPanel implements KeyListener,ActionListener{
 		}
 		if(e.getKeyCode() == KeyEvent.VK_UP)
 		{
+			/*
 			   Timer timer = new Timer(50, this);
 			   timer.start();
+			   */
+			   
+			isJumping = true;
+			   Timer jumpingTimer = new Timer(1000, new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					isJumping = false;
+				}
+				   
+			   });
+			   jumpingTimer.setRepeats(false);
+			   jumpingTimer.start();
 
 		}
 		
