@@ -18,36 +18,26 @@ public class CAT extends JFrame {
 		this.setVisible(true);
 		this.setLayout(null);
 		
-		System.out.println(getWidth());
-		System.out.println(getHeight());
-	
 		arrayPanel = new boolean[getWidth()][getHeight()];
 		for (int i = 0; i < getWidth(); i++){
 			for (int j = 0; j < getHeight(); j++){
 				arrayPanel[i][j] = false;
 			}
-		}
-		
+		}		
 					
 		//30,40 to 60,50
 		Panel_Platform platformMid = new Panel_Platform(300, 300, 400 ,50);
+		setObstacle(platformMid);
 		this.add(platformMid);
 		
 		Panel_Platform platformMidObstacle = new Panel_Platform(400, 200, 50, 100);
+		setObstacle(platformMidObstacle);
 		this.add(platformMidObstacle);
 		
-		for (int i = platformMid.getX(); i < (platformMid.getX() + platformMid.getWidth()); i++){
-			for (int j = platformMid.getY(); j < (platformMid.getY() + platformMid.getHeight()); j++){
-				arrayPanel[i][j] = true;
-			}
-		}
-		
-		for (int i = platformMidObstacle.getX(); i < (platformMidObstacle.getX() + platformMidObstacle.getWidth()); i++){
-			for (int j = platformMidObstacle.getY(); j < (platformMidObstacle.getY() + platformMidObstacle.getHeight()); j++){
-				arrayPanel[i][j] = true;
-			}
-		}
-		
+		Panel_Platform groundPlatform = new Panel_Platform(0, getHeight()-50, getWidth(), 50);
+		setObstacle(groundPlatform);
+		this.add(groundPlatform);
+				
 		final Panel_Player player = new Panel_Player();
 		this.add(player);
 		this.addKeyListener(player);
@@ -86,6 +76,14 @@ public class CAT extends JFrame {
 		});
 		gravityTimer.start();
 		
+	}
+	
+	void setObstacle(Panel_Platform p){
+		for (int i = p.getX(); i < (p.getX() + p.getWidth()); i++){
+			for (int j = p.getY(); j < (p.getY() + p.getHeight()); j++){
+				arrayPanel[i][j] = true;
+			}
+		}		
 	}
 	
 	class TimerListener implements ActionListener
