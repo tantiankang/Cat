@@ -59,6 +59,7 @@ public class CAT extends JFrame {
 								return;
 							}
 						}
+						player.onGround = false;
 						player.setLocation(player.getX(), player.getY()+1);
 						
 					}
