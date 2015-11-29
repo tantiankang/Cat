@@ -15,14 +15,14 @@ import javax.swing.*;
 import javax.swing.Timer;
 
 
-public class Panel_Player extends JPanel implements KeyListener{
+public class Panel_Player2 extends JPanel implements KeyListener{
 
 	int count=-1;
 	int stopCount =0;
 	boolean isJumping = false;
 	boolean onGround = true;
 
-	public Panel_Player(int x , int y ,int x1 , int y1)
+	public Panel_Player2(int x , int y ,int x1 , int y1)
 	{
 		this.setBounds(x,y,x1,y1);
 		this.setLayout(null);
@@ -44,7 +44,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyCode() == KeyEvent.VK_LEFT)
+		if(e.getKeyCode() == KeyEvent.VK_A)
 		{
 			/*
 			boolean block = false;
@@ -68,7 +68,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 				setLocation(getX() - 1, getY());
 			}
 		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		if(e.getKeyCode() == KeyEvent.VK_D)
 		{
 			/*
 			int x;
@@ -95,7 +95,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 				setLocation(getX() + 1, getY());
 			}
 		}
-		if(e.getKeyCode() == KeyEvent.VK_UP)
+		if(e.getKeyCode() == KeyEvent.VK_W)
 		{
 			if(!onGround)
 				return;

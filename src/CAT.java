@@ -25,24 +25,37 @@ public class CAT extends JFrame {
 			}
 		}		
 					
-		//30,40 to 60,50
-		Panel_Platform platformMid = new Panel_Platform(300, 300, 400 ,50);
-		setObstacle(platformMid);
-		this.add(platformMid);
+		//All platforms
+		addsetObstacle(300,300,400,50);
+		//addsetObstacle(300,300,400,50);
+		//addsetObstacle(300,300,400,50);
+		//addsetObstacle(300,300,400,50);
+		//addsetObstacle(300,300,400,50);
+		//addsetObstacle(300,300,400,50);
+		//addsetObstacle(300,300,400,50);
 		
-		Panel_Platform platformMidObstacle = new Panel_Platform(400, 200, 50, 100);
-		setObstacle(platformMidObstacle);
-		this.add(platformMidObstacle);
-		
-		Panel_Platform groundPlatform = new Panel_Platform(0, getHeight()-50, getWidth(), 50);
-		setObstacle(groundPlatform);
-		this.add(groundPlatform);
+		//All obstacle
+		addsetObstacle(400,200,50,100);
+
+		//obstacle border of maps
+		addsetObstacle(0,getHeight()-50,getWidth(),50);
+		addsetObstacle(0,0,10,getHeight());
+		addsetObstacle(0,0,getWidth(),10);
+		addsetObstacle(getWidth()-20,0,20,getHeight());
+
 				
-		final Panel_Player player = new Panel_Player();
+		final Panel_Player player = new Panel_Player(500,200,100,100);
 		this.add(player);
 		this.addKeyListener(player);
-		this.add(new Panel_Main());
+		
+		
+		final Panel_Player2 player2 = new Panel_Player2(300,200,100,100);
+		this.add(player2);
+		this.addKeyListener(player2);
+
+		
 		timer.start();
+		this.add(new Panel_Main());
 		
 		Timer gravityTimer = new Timer(50, new ActionListener(){
 
@@ -79,14 +92,51 @@ public class CAT extends JFrame {
 		});
 		gravityTimer.start();
 		
+		Timer gravityTimer2 = new Timer(50, new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				for(int i = 0; i<10; i++){
+					if(player2.isJumping == false){
+//						if(arrayPanel[player.getX()][player.getY() + 1 + player.getHeight()] == false
+//								&& arrayPanel[player.getX() + player.getWidth()][player.getY() + 1 + player.getHeight()] == false)
+//							player.setLocation(player.getX(), player.getY()+1);
+						for(int j = player2.getX(); j < (player2.getX() + player2.getWidth()); j++){
+							if(arrayPanel[j][player2.getY() + player2.getHeight() + 1] == true){
+								player2.onGround = true;
+								return;
+							}
+						}
+						player2.onGround = false;
+						player2.setLocation(player2.getX(), player2.getY()+1);
+						
+					}
+					if(player2.isJumping == true){
+//						if(arrayPanel[player.getX()][player.getY() - 1 + player.getHeight()] == false
+//								&& arrayPanel[player.getX() + player.getWidth()][player.getY() - 1 + player.getHeight()] == false)
+//							player.setLocation(player.getX(), player.getY()-1);
+						for(int j = player2.getX(); j < (player2.getX() + player2.getWidth()); j++){
+							if(arrayPanel[j][player2.getY() + player2.getHeight() - 1] == true)
+								return;
+						}
+						player2.setLocation(player2.getX(), player2.getY()-1);
+					}
+				}
+			}
+			
+		});
+		gravityTimer2.start();
+		
 	}
 	
-	void setObstacle(Panel_Platform p){
+	void addsetObstacle(int x,int y,int z,int t){
+		Panel_Platform p = new Panel_Platform(x,y,z,t);
 		for (int i = p.getX(); i < (p.getX() + p.getWidth()); i++){
 			for (int j = p.getY(); j < (p.getY() + p.getHeight()); j++){
 				arrayPanel[i][j] = true;
 			}
-		}		
+		}	
+		this.add(p);
 	}
 	
 	class TimerListener implements ActionListener
