@@ -15,7 +15,7 @@ import javax.swing.*;
 import javax.swing.Timer;
 
 
-public class Panel_Player extends JPanel implements KeyListener,ActionListener{
+public class Panel_Player extends JPanel implements KeyListener{
 
 	int count=-1;
 	int stopCount =0;
@@ -45,15 +45,12 @@ public class Panel_Player extends JPanel implements KeyListener,ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			int x;
-			int y;
 			boolean block = false;
 			for(int x1=getX();x1<getX()+getWidth();x1++)
 				for(int y1=getY();y1<getY()+getHeight();y1++)
 				{
-					  x=x1;
-					  y=y1;
-				      if(CAT.arrayPanel[x][y])
+
+				      if(CAT.arrayPanel[x1][y1])
 					   {
 						 block=true;
 					   }
@@ -83,10 +80,7 @@ public class Panel_Player extends JPanel implements KeyListener,ActionListener{
 		}
 		if(e.getKeyCode() == KeyEvent.VK_UP)
 		{
-			/*
-			   Timer timer = new Timer(50, this);
-			   timer.start();
-			   */
+
 			   
 			isJumping = true;
 			   Timer jumpingTimer = new Timer(1000, new ActionListener(){
@@ -116,45 +110,6 @@ public class Panel_Player extends JPanel implements KeyListener,ActionListener{
 		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Timer time = (Timer)e.getSource();
-		
-		int x;
-		int y;
-		boolean block = false;
-		for(int x1=getX();x1<getX()+getWidth();x1++)
-			for(int y1=getY();y1<getY()+getHeight();y1++)
-			{
-				  x=x1;
-				  y=y1;
-			      if(CAT.arrayPanel[x][y])
-				   {
-					 block=true;
-				   }
 
-			}
-		if(block==false)
-		{
-			if(count<3)
-			{
-				setLocation(getX(),getY()-15);
-				count++;
-			}
-			else
-			{
-				setLocation(getX(),getY()+15);
-				stopCount++;
-			}
-			if(stopCount == 4)
-			{
-				time.stop();
-				stopCount =0;
-				count =-1;
-			}
-		}
-	
-		
-	}
 	
 }
