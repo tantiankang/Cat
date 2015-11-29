@@ -54,8 +54,10 @@ public class CAT extends JFrame {
 //								&& arrayPanel[player.getX() + player.getWidth()][player.getY() + 1 + player.getHeight()] == false)
 //							player.setLocation(player.getX(), player.getY()+1);
 						for(int j = player.getX(); j < (player.getX() + player.getWidth()); j++){
-							if(arrayPanel[j][player.getY() + player.getHeight() + 1] == true)
+							if(arrayPanel[j][player.getY() + player.getHeight() + 1] == true){
+								player.onGround = true;
 								return;
+							}
 						}
 						player.setLocation(player.getX(), player.getY()+1);
 						
