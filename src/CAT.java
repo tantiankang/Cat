@@ -60,14 +60,25 @@ public class CAT extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				for(int i = 0; i<10; i++){
 					if(player.isJumping == false){
-						if(arrayPanel[player.getX()][player.getY() + 1 + player.getHeight()] == false
-								&& arrayPanel[player.getX() + player.getWidth()][player.getY() + 1 + player.getHeight()] == false)
-							player.setLocation(player.getX(), player.getY()+1);
+//						if(arrayPanel[player.getX()][player.getY() + 1 + player.getHeight()] == false
+//								&& arrayPanel[player.getX() + player.getWidth()][player.getY() + 1 + player.getHeight()] == false)
+//							player.setLocation(player.getX(), player.getY()+1);
+						for(int j = player.getX(); j < (player.getX() + player.getWidth()); j++){
+							if(arrayPanel[j][player.getY() + player.getHeight() + 1] == true)
+								return;
+						}
+						player.setLocation(player.getX(), player.getY()+1);
+						
 					}
 					if(player.isJumping == true){
-						if(arrayPanel[player.getX()][player.getY() - 1 + player.getHeight()] == false
-								&& arrayPanel[player.getX() + player.getWidth()][player.getY() - 1 + player.getHeight()] == false)
-							player.setLocation(player.getX(), player.getY()-1);
+//						if(arrayPanel[player.getX()][player.getY() - 1 + player.getHeight()] == false
+//								&& arrayPanel[player.getX() + player.getWidth()][player.getY() - 1 + player.getHeight()] == false)
+//							player.setLocation(player.getX(), player.getY()-1);
+						for(int j = player.getX(); j < (player.getX() + player.getWidth()); j++){
+							if(arrayPanel[j][player.getY() + player.getHeight() - 1] == true)
+								return;
+						}
+						player.setLocation(player.getX(), player.getY()-1);
 					}
 				}
 			}

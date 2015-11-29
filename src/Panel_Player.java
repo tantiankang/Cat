@@ -19,7 +19,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 
 	int count=-1;
 	int stopCount =0;
-	boolean isJumping;
+	boolean isJumping = false;
 
 	public Panel_Player()
 	{
@@ -80,20 +80,17 @@ public class Panel_Player extends JPanel implements KeyListener{
 		}
 		if(e.getKeyCode() == KeyEvent.VK_UP)
 		{
-
-			   
 			isJumping = true;
-			   Timer jumpingTimer = new Timer(1000, new ActionListener(){
+			Timer jumpingTimer = new Timer(1000, new ActionListener(){
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					isJumping = false;
-				}
-				   
-			   });
-			   jumpingTimer.setRepeats(false);
-			   jumpingTimer.start();
-
+                        isJumping = false;
+                }
+                   
+			});
+			jumpingTimer.setRepeats(false);
+			jumpingTimer.start();
 		}
 		
 	}
