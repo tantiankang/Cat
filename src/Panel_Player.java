@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,11 +22,20 @@ public class Panel_Player extends JPanel implements KeyListener{
 	boolean isJumping = false;
 	boolean onGround = true;
 	int hp = 100;
+	ConcurrentHashMap<String, Boolean> keyPressedMap = new ConcurrentHashMap<String, Boolean>();
 
 	public Panel_Player(int x , int y ,int x1 , int y1)
 	{
 		this.setBounds(x,y,x1,y1);
 		this.setLayout(null);
+
+		keyPressedMap.put("left", false);
+		keyPressedMap.put("right", false);
+		keyPressedMap.put("shoot", false);
+		
+		Timer keyTimer = new Timer(25, new KeyTimer());
+		keyTimer.start();
+
 	}
 	
 	void damageHP(int damage){
@@ -52,20 +62,6 @@ public class Panel_Player extends JPanel implements KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			/*
-			boolean block = false;
-			for(int x1=getX();x1<getX()+getWidth();x1++)
-				for(int y1=getY();y1<getY()+getHeight();y1++)
-				{
-
-				      if(CAT.arrayPanel[x1][y1])
-					   {
-						 block=true;
-					   }
- 
-				}
-			if(block==false)
-			setLocation(getX()-10, getY());
-			*/
 			isLeft = true;
 			for(int i = 0; i < 10; i++){
 				for(int y = getY(); y < getY() + getHeight(); y++)
@@ -73,27 +69,12 @@ public class Panel_Player extends JPanel implements KeyListener{
 						return;
 				setLocation(getX() - 1, getY());
 			}
+			*/
+			keyPressedMap.replace("left", true);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			/*
-			int x;
-			int y;
-			boolean block = false;
-			for(int x1=getX();x1<getX()+getWidth();x1++)
-				for(int y1=getY();y1<getY()+getHeight();y1++)
-				{
-					  x=x1;
-					  y=y1;
-				      if(CAT.arrayPanel[x][y])
-					   {
-						 block=true;
-					   }
- 
-				}
-			if(block==false)
-			setLocation(getX()+10, getY());
-			*/
 			isLeft = false;
 			for(int i = 0; i < 10; i++){
 				for(int y = getY(); y < getY() + getHeight(); y++)
@@ -101,6 +82,8 @@ public class Panel_Player extends JPanel implements KeyListener{
 						return;
 				setLocation(getX() + 1, getY());
 			}
+			*/
+			keyPressedMap.replace("right", true);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_UP)
 		{
@@ -121,15 +104,23 @@ public class Panel_Player extends JPanel implements KeyListener{
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_L){
+			/*
 			System.out.println("L key pressed.");
 			getParent().add(new Bullet(this));
+			*/
+			keyPressedMap.replace("shoot", true);
 		}
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_LEFT)
+			keyPressedMap.replace("left", false);
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+			keyPressedMap.replace("right", false);
+		if(e.getKeyCode() == KeyEvent.VK_L)
+			keyPressedMap.replace("shoot", false);
 		
 	}
 
@@ -138,6 +129,37 @@ public class Panel_Player extends JPanel implements KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	class KeyTimer implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(keyPressedMap.get("left")){
+				isLeft = true;
+				for(int i = 0; i < 10; i++){
+					for(int y = getY(); y < getY() + getHeight(); y++)
+						if(CAT.arrayPanel[getX() - 1][y])
+							return;
+					setLocation(getX() - 1, getY());
+				}
+			}
+			if(keyPressedMap.get("right")){
+				isLeft = false;
+				for(int i = 0; i < 10; i++){
+					for(int y = getY(); y < getY() + getHeight(); y++)
+						if(CAT.arrayPanel[getX() + getWidth() + 1][y])
+							return;
+					setLocation(getX() + 1, getY());
+				}
+			}
+			if(keyPressedMap.get("shoot")){
+				System.out.println("L key pressed.");
+				getParent().add(new Bullet(Panel_Player.this));
+			}
+		}
+		
+	}
+
 
 
 	
