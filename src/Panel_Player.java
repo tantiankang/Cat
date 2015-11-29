@@ -17,8 +17,7 @@ import javax.swing.Timer;
 
 public class Panel_Player extends JPanel implements KeyListener{
 
-	int count=-1;
-	int stopCount =0;
+	boolean isLeft = true;
 	boolean isJumping = false;
 	boolean onGround = true;
 
@@ -61,6 +60,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 			if(block==false)
 			setLocation(getX()-10, getY());
 			*/
+			isLeft = true;
 			for(int i = 0; i < 10; i++){
 				for(int y = getY(); y < getY() + getHeight(); y++)
 					if(CAT.arrayPanel[getX() - 1][y])
@@ -88,6 +88,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 			if(block==false)
 			setLocation(getX()+10, getY());
 			*/
+			isLeft = false;
 			for(int i = 0; i < 10; i++){
 				for(int y = getY(); y < getY() + getHeight(); y++)
 					if(CAT.arrayPanel[getX() + getWidth() + 1][y])
@@ -111,6 +112,11 @@ public class Panel_Player extends JPanel implements KeyListener{
 			});
 			jumpingTimer.setRepeats(false);
 			jumpingTimer.start();
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_L){
+			System.out.println("L key pressed.");
+			getParent().add(new Bullet(this));
 		}
 		
 	}

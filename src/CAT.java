@@ -55,7 +55,7 @@ public class CAT extends JFrame {
 
 		
 		timer.start();
-		this.add(new Panel_Main());
+		//this.add(new Panel_Main());
 		
 		Timer gravityTimer = new Timer(50, new ActionListener(){
 
