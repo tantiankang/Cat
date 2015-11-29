@@ -20,11 +20,17 @@ public class Panel_Player extends JPanel implements KeyListener{
 	boolean isLeft = true;
 	boolean isJumping = false;
 	boolean onGround = true;
+	int hp = 100;
 
 	public Panel_Player(int x , int y ,int x1 , int y1)
 	{
 		this.setBounds(x,y,x1,y1);
 		this.setLayout(null);
+	}
+	
+	void damageHP(int damage){
+		if(this.hp - 10 != 0)
+		this.hp = this.hp - damage;
 	}
 	
 	protected void paintComponent(Graphics g)

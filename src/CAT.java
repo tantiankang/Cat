@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 public class CAT extends JFrame {
 	private Timer timer = new Timer(500, new TimerListener());
 	public static boolean arrayPanel[][];
+	public static Object playerArray[] = new Object[2];
+	public static JProgressBar hp1 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
+	public static JProgressBar hp2 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
 	
 	public CAT()
 	{
@@ -18,7 +21,9 @@ public class CAT extends JFrame {
 		this.setVisible(true);
 		this.setLayout(null);
 		
-		arrayPanel = new boolean[getWidth()][getHeight()];
+		setContentPane(new JLabel(new ImageIcon("BG.png")));
+						
+		arrayPanel = new boolean[getWidth()+1][getHeight()+1];
 		for (int i = 0; i < getWidth(); i++){
 			for (int j = 0; j < getHeight(); j++){
 				arrayPanel[i][j] = false;
@@ -36,27 +41,32 @@ public class CAT extends JFrame {
 		
 		//All obstacle
 		addsetObstacle(400,200,50,100);
-
+				
 		//obstacle border of maps
 		addsetObstacle(0,getHeight()-50,getWidth(),50);
 		addsetObstacle(0,0,10,getHeight());
 		addsetObstacle(0,0,getWidth(),10);
 		addsetObstacle(getWidth()-20,0,20,getHeight());
-
 				
 		final Panel_Player player = new Panel_Player(500,200,100,100);
 		this.add(player);
 		this.addKeyListener(player);
-		
+		playerArray[0] = player;
 		
 		final Panel_Player2 player2 = new Panel_Player2(300,200,100,100);
 		this.add(player2);
 		this.addKeyListener(player2);
-
+		playerArray[1] = player2;
 		
-		timer.start();
-		//this.add(new Panel_Main());
+		hp1.setBounds(20, 20, 400, 20);
+		hp2.setBounds(getWidth() - 400 - 20, 20, 400, 20);
+		add(hp1);
+		add(hp2);
 		
+		timer.start();		
+		
+		//this.add(new Panel_Main());	
+						
 		Timer gravityTimer = new Timer(50, new ActionListener(){
 
 			@Override
@@ -144,6 +154,8 @@ public class CAT extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			hp1.setValue(((Panel_Player)playerArray[0]).hp);
+			hp2.setValue(((Panel_Player2)playerArray[1]).hp);
 			repaint();
 			revalidate();
 
