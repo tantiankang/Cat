@@ -36,9 +36,9 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 	}
 	
 	void damageHP(int damage){
-		if(this.hp != 0)
-		this.hp = this.hp - damage;
-		if(this.hp==0)
+		if(this.hp >= 0)
+			this.hp = this.hp - damage;
+		else
 		{
 			JOptionPane.showMessageDialog(null, "Game Over");
 			System.exit(0);
@@ -134,7 +134,7 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 					return;
 				isJumping = true;
 				onGround = false;
-				Timer jumpingTimer = new Timer(750, new ActionListener(){
+				Timer jumpingTimer = new Timer(500, new ActionListener(){
 	
 					@Override
 					public void actionPerformed(ActionEvent arg0) {

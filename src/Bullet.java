@@ -67,7 +67,7 @@ public class Bullet extends JPanel{
 							)
 							
 						){
-						((Panel_Player2)CAT.playerArray[1]).damageHP(10);
+						((Panel_Player2)CAT.playerArray[1]).damageHP(4);
 						removeBullet();
 						stopBulletTimer();
 
@@ -134,7 +134,7 @@ public class Bullet extends JPanel{
 							)
 							
 						){
-						((Panel_Player)CAT.playerArray[0]).damageHP(10);
+						((Panel_Player)CAT.playerArray[0]).damageHP(4);
 						removeBullet();
 						stopBulletTimer();
 
