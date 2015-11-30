@@ -9,6 +9,10 @@ import javax.swing.*;
 
 public class Panel_Platform extends JPanel {
 	
+	public Panel_Platform()
+	{
+		
+	}
 	public Panel_Platform(int x,int y,int sizex,int sizey)
 	{
 		this.setBounds(x,y,sizex,sizey);
