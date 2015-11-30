@@ -24,7 +24,6 @@ public class Bullet extends JPanel{
 			setBounds(p.getX() + p.getWidth(),p.getY()+ offset, 50, 5);
 		}
 		
-		System.out.println("bullet created with " + p.getX() + p.getY());
 		
 		Timer bulletTimer = new Timer(10, new ActionListener(){
 
@@ -71,7 +70,7 @@ public class Bullet extends JPanel{
 						((Panel_Player2)CAT.playerArray[1]).damageHP(10);
 						removeBullet();
 						stopBulletTimer();
-						System.out.println("Player 2's hp " + ((Panel_Player2)CAT.playerArray[1]).hp);
+
 						return;
 					} //end of the extremely long hitbox check if
 				}
@@ -91,7 +90,7 @@ public class Bullet extends JPanel{
 		else{
 			setBounds(p.getX() + p.getWidth(),p.getY()+ offset, 50, 5);
 		}
-		System.out.println("bullet created with " + p.getX() + p.getY());
+
 		
 		Timer bulletTimer = new Timer(10, new ActionListener(){
 
@@ -138,7 +137,7 @@ public class Bullet extends JPanel{
 						((Panel_Player)CAT.playerArray[0]).damageHP(10);
 						removeBullet();
 						stopBulletTimer();
-						System.out.println("Player 1's hp " + ((Panel_Player)CAT.playerArray[0]).hp);
+
 						return;
 					} //end of the extremely long hitbox check if
 				}
@@ -151,7 +150,7 @@ public class Bullet extends JPanel{
 	
 	void removeBullet(){
 		getParent().remove(this);
-		System.out.println("Bullet removed.");
+
 	}
 	
 	void stopBulletTimer(){
