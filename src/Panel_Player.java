@@ -3,12 +3,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.imageio.ImageIO;
@@ -21,6 +18,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 	boolean isLeft = true;
 	boolean isJumping = false;
 	boolean onGround = true;
+	boolean laserCD = false;
 	int hp = 100;
 	ConcurrentHashMap<String, Boolean> keyPressedMap = new ConcurrentHashMap<String, Boolean>();
 
@@ -36,11 +34,10 @@ public class Panel_Player extends JPanel implements KeyListener{
 		
 		Timer keyTimer = new Timer(25, new KeyTimer());
 		keyTimer.start();
-
 	}
 	
 	void damageHP(int damage){
-		if(this.hp - 10 != 0)
+		if(this.hp != 0)
 		this.hp = this.hp - damage;
 	}
 	
@@ -67,8 +64,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_UP)
 			keyPressedMap.replace("jump", true);
 		if(e.getKeyCode() == KeyEvent.VK_L)
-			keyPressedMap.replace("shoot", true);
-		
+			keyPressedMap.replace("shoot", true);		
 	}
 
 	@Override
@@ -80,14 +76,12 @@ public class Panel_Player extends JPanel implements KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_L)
 			keyPressedMap.replace("shoot", false);
 		if(e.getKeyCode() == KeyEvent.VK_UP)
-			keyPressedMap.replace("jump", false);
-		
+			keyPressedMap.replace("jump", false);		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 	
 	class KeyTimer implements ActionListener{
@@ -112,9 +106,22 @@ public class Panel_Player extends JPanel implements KeyListener{
 					setLocation(getX() + 1, getY());
 				}
 			}
-			if(keyPressedMap.get("shoot")){
+			if(keyPressedMap.get("shoot") && !laserCD){
 				System.out.println("L key pressed.");
+				laserCD = true;
 				getParent().add(new Bullet(Panel_Player.this));
+				Timer laserTimer = new Timer(200, new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						laserCD = false;
+						
+					}
+					
+				});
+				
+				laserTimer.setRepeats(false);
+				laserTimer.start();
 			}
 			if(keyPressedMap.get("jump")){
 				if(!onGround)
@@ -132,11 +139,6 @@ public class Panel_Player extends JPanel implements KeyListener{
 				jumpingTimer.setRepeats(false);
 				jumpingTimer.start();
 			}
-		}
-		
-	}
-
-
-
-	
+		}		
+	}	
 }
