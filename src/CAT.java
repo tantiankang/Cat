@@ -11,6 +11,8 @@ public class CAT extends JFrame {
 	public static Object playerArray[] = new Object[2];
 	public static JProgressBar hp1 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
 	public static JProgressBar hp2 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
+	public static Panel_Player player;
+	public static Panel_Player2 player2;
 	
 	public CAT()
 	{
@@ -59,12 +61,12 @@ public class CAT extends JFrame {
 		addsetObstacle(0,0,getWidth(),10);
 		addsetObstacle(getWidth()-20,0,20,getHeight());
 				
-		final Panel_Player player = new Panel_Player(500,200,100,100);
+		player = new Panel_Player(500,200,100,100);
 		this.add(player);
 		this.addKeyListener(player);
 		playerArray[0] = player;
 		
-		final Panel_Player2 player2 = new Panel_Player2(300,200,100,100);
+		player2 = new Panel_Player2(300,200,100,100);
 		this.add(player2);
 		this.addKeyListener(player2);
 		playerArray[1] = player2;
@@ -102,7 +104,7 @@ public class CAT extends JFrame {
 //								&& arrayPanel[player.getX() + player.getWidth()][player.getY() - 1 + player.getHeight()] == false)
 //							player.setLocation(player.getX(), player.getY()-1);
 						for(int j = player.getX(); j < (player.getX() + player.getWidth()); j++){
-							if(arrayPanel[j][player.getY() + player.getHeight() - 1] == true)
+							if(arrayPanel[j][player.getY() - 1] == true)
 								return;
 						}
 						player.setLocation(player.getX(), player.getY()-1);
@@ -137,7 +139,7 @@ public class CAT extends JFrame {
 //								&& arrayPanel[player.getX() + player.getWidth()][player.getY() - 1 + player.getHeight()] == false)
 //							player.setLocation(player.getX(), player.getY()-1);
 						for(int j = player2.getX(); j < (player2.getX() + player2.getWidth()); j++){
-							if(arrayPanel[j][player2.getY() + player2.getHeight() - 1] == true)
+							if(arrayPanel[j][player2.getY() - 1] == true)
 								return;
 						}
 						player2.setLocation(player2.getX(), player2.getY()-1);
