@@ -40,8 +40,11 @@ public class PanelMoving extends JPanel {
 		
 		boolean direction = false;
 		public void actionPerformed(ActionEvent e) {
+			for (int i = getX(); i < (getX() + getWidth()); i++)
+				for (int j = getY(); j < (getY() + getHeight()); j++)
+					CAT.arrayPanel[i][j] = false;
+				
 			Timer moving = (Timer)e.getSource();
-			System.out.println("the y is"+getY());	
 
 			if( direction ==false)
 			{
