@@ -64,12 +64,11 @@ public class PanelMoving extends JPanel {
 						|| CAT.arrayPanel[CAT.player.getX()+CAT.player.getWidth()][CAT.player.getY() + CAT.player.getHeight()]){
 					CAT.player.setLocation(CAT.player.getX(), getY() - CAT.player.getHeight());
 				}
-				/*
-				while(CAT.arrayPanel[CAT.player.getX()][CAT.player.getY() + CAT.player.getHeight()] || 
-					CAT.arrayPanel[CAT.player.getX()+CAT.player.getWidth()][CAT.player.getY() + CAT.player.getHeight()]){
-					CAT.player.setLocation(CAT.player.getX(), getY() - CAT.player.getHeight());
+				if(CAT.arrayPanel[CAT.player2.getX()][CAT.player2.getY() + CAT.player2.getHeight()] 
+						|| CAT.arrayPanel[CAT.player2.getX()+CAT.player2.getWidth()][CAT.player2.getY() + CAT.player2.getHeight()]){
+					CAT.player2.setLocation(CAT.player2.getX(), getY() - CAT.player2.getHeight());
 				}
-				*/
+				
 				if(getY()==138)
 				{
 					direction = false;
