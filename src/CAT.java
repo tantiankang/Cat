@@ -16,7 +16,7 @@ public class CAT extends JFrame {
 	{
 		this.setTitle("Cat Shooter Game");
 		this.setFocusable(true);
-		this.setSize(1200,700);
+		this.setSize(1380,700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setLayout(null);
@@ -30,17 +30,21 @@ public class CAT extends JFrame {
 			}
 		}		
 					
+		int x=getWidth();
+		int y =getHeight();
 		//All platforms
-		addsetObstacle(300,300,400,50);
-		//addsetObstacle(300,300,400,50);
-		//addsetObstacle(300,300,400,50);
-		//addsetObstacle(300,300,400,50);
-		//addsetObstacle(300,300,400,50);
-		//addsetObstacle(300,300,400,50);
-		//addsetObstacle(300,300,400,50);
+		addsetObstacle(x/15*3,y/10*8,x/15*3,y/10*1);
+		addsetObstacle(x/15*9,y/10*8,x/15*3,y/10*1);
+		addsetObstacle(x/15*7,y/10*7,x/15*1,y/10*3);
+		addsetObstacle(x/15*6,y/10*6,x/15*3,y/10*1);
+		addsetObstacle(x/15*7,y/10*5,x/15*1,y/10*1);
+		addsetObstacle(x/15*3,y/10*5,x/15*1,y/10*1);
+		addsetObstacle(x/15*11,y/10*5,x/15*1,y/10*1);
+		addsetObstacle(x/15*2,y/10*4,x/15*1,y/10*1);
+		addsetObstacle(x/15*12,y/10*4,x/15*1,y/10*1);
+		addsetObstacle(x/15*6,y/10*3,x/15*3,y/25*1);
 		
-		//All obstacle
-		addsetObstacle(400,200,50,100);
+
 				
 		//obstacle border of maps
 		addsetObstacle(0,getHeight()-50,getWidth(),50);
