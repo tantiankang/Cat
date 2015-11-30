@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 
 public class CAT extends JFrame {
-	private Timer timer = new Timer(500, new TimerListener());
+	private Timer timer = new Timer(33, new TimerListener());
 	public static boolean arrayPanel[][];
 	public static Object playerArray[] = new Object[2];
 	public static JProgressBar hp1 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
@@ -156,9 +156,8 @@ public class CAT extends JFrame {
 			// TODO Auto-generated method stub
 			hp1.setValue(((Panel_Player)playerArray[0]).hp);
 			hp2.setValue(((Panel_Player2)playerArray[1]).hp);
-			repaint();
+			//repaint();
 			revalidate();
-
 		}
 	}
 
