@@ -63,11 +63,10 @@ public class PanelMoving extends JPanel {
 				}
 			}
 			
-			for (int i = getX(); i < (getX() + getWidth()); i++){
-				for (int j = getY(); j < (getY() + getHeight()); j++){
+			for (int i = getX(); i < (getX() + getWidth()); i++)
+				for (int j = getY(); j < (getY() + getHeight()); j++)
 					CAT.arrayPanel[i][j] = true;
-				}
-		}
+
 	}
 
 }}

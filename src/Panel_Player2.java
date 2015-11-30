@@ -10,7 +10,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.Timer;
 
 
 public class Panel_Player2 extends JPanel implements KeyListener{
@@ -39,6 +38,11 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 	void damageHP(int damage){
 		if(this.hp != 0)
 		this.hp = this.hp - damage;
+		if(this.hp==0)
+		{
+			JOptionPane.showMessageDialog(null, "Game Over");
+			System.exit(0);
+		}
 	}
 	
 	protected void paintComponent(Graphics g)
