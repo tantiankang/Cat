@@ -69,8 +69,8 @@ public class CAT extends JFrame {
 		this.addKeyListener(player2);
 		playerArray[1] = player2;
 		
-		hp1.setBounds(20, 20, 400, 20);
-		hp2.setBounds(getWidth() - 400 - 20, 20, 400, 20);
+		hp2.setBounds(20, 20, 400, 20);
+		hp1.setBounds(getWidth() - 400 - 20, 20, 400, 20);
 		add(hp1);
 		add(hp2);
 		
