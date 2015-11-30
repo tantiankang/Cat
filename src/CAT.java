@@ -80,11 +80,11 @@ public class CAT extends JFrame {
 		
 		//this.add(new Panel_Main());	
 						
-		Timer gravityTimer = new Timer(50, new ActionListener(){
+		Timer gravityTimer = new Timer(16, new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				for(int i = 0; i<10; i++){
+				for(int i = 0; i<4; i++){
 					if(player.isJumping == false){
 //						if(arrayPanel[player.getX()][player.getY() + 1 + player.getHeight()] == false
 //								&& arrayPanel[player.getX() + player.getWidth()][player.getY() + 1 + player.getHeight()] == false)
