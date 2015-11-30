@@ -35,16 +35,16 @@ public class CAT extends JFrame {
 		int x=getWidth();
 		int y =getHeight();
 		//All platforms
-		addsetObstacle(x/15*3,y/10*8,x/15*3,y/10*1);
-		addsetObstacle(x/15*9,y/10*8,x/15*3,y/10*1);
-		addsetObstacle(x/15*7,y/10*7,x/15*1,y/10*3);
-		addsetObstacle(x/15*6,y/10*6,x/15*3,y/10*1);
-		addsetObstacle(x/15*7,y/10*5,x/15*1,y/10*1);
-		addsetObstacle(x/15*3,y/10*5,x/15*1,y/10*1);
-		addsetObstacle(x/15*11,y/10*5,x/15*1,y/10*1);
-		addsetObstacle(x/15*2,y/10*4,x/15*1,y/10*1);
-		addsetObstacle(x/15*12,y/10*4,x/15*1,y/10*1);
-		addsetObstacle(x/15*6,y/10*3,x/15*3,y/25*1);
+		addsetObstacle(x/15*3,y/10*8,x/15*3,y/10*1, false);
+		addsetObstacle(x/15*9,y/10*8,x/15*3,y/10*1, false);
+		addsetObstacle(x/15*7,y/10*7,x/15*1,y/10*3, false);
+		addsetObstacle(x/15*6,y/10*6,x/15*3,y/10*1, false);
+		addsetObstacle(x/15*7,y/10*5,x/15*1,y/10*1, false);
+		addsetObstacle(x/15*3,y/10*5,x/15*1,y/10*1, false);
+		addsetObstacle(x/15*11,y/10*5,x/15*1,y/10*1, false);
+		addsetObstacle(x/15*2,y/10*4,x/15*1,y/10*1, false);
+		addsetObstacle(x/15*12,y/10*4,x/15*1,y/10*1, false);
+		addsetObstacle(x/15*6,y/10*3,x/15*3,y/25*1, false);
 		
 		//moving panel
 		PanelMoving left = new PanelMoving(x/35,y/15*3,x/20*2,y/15*1);
@@ -56,10 +56,10 @@ public class CAT extends JFrame {
 
 				
 		//obstacle border of maps
-		addsetObstacle(0,getHeight()-50,getWidth(),50);
-		addsetObstacle(0,0,10,getHeight());
-		addsetObstacle(0,0,getWidth(),10);
-		addsetObstacle(getWidth()-20,0,20,getHeight());
+		addsetObstacle(0,getHeight()-50,getWidth(),50, true);
+		addsetObstacle(0,0,10,getHeight(), true);
+		addsetObstacle(0,0,getWidth(),10, true);
+		addsetObstacle(getWidth()-20,0,20,getHeight(), true);
 				
 		player = new Panel_Player(500,200,100,100);
 		this.add(player);
@@ -152,14 +152,21 @@ public class CAT extends JFrame {
 		
 	}
 	
-	void addsetObstacle(int x,int y,int z,int t){
-		Panel_Platform p = new Panel_Platform(x,y,z,t);
-		for (int i = p.getX(); i < (p.getX() + p.getWidth()); i++){
-			for (int j = p.getY(); j < (p.getY() + p.getHeight()); j++){
-				arrayPanel[i][j] = true;
+	void addsetObstacle(int x,int y,int z,int t, boolean isTransparent){
+		if(!isTransparent){
+			Panel_Platform p = new Panel_Platform(x,y,z,t);
+			for (int i = p.getX(); i < (p.getX() + p.getWidth()); i++){
+				for (int j = p.getY(); j < (p.getY() + p.getHeight()); j++){
+					arrayPanel[i][j] = true;
 			}
+			this.add(p);
 		}	
-		this.add(p);
+		}else{
+			for(int i = x; i <= x+z; i++)
+				for(int j = y; j <= y+t; j++)
+					arrayPanel[i][j] = true;
+			
+		}
 	}
 	
 	class TimerListener implements ActionListener
