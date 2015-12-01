@@ -129,7 +129,7 @@ public class CAT extends JFrame {
 							if(arrayPanel[j][player.getY() - 1] == true)
 								return;
 						}
-						player.setLocation(player.getX(), player.getY()-2);
+						player.setLocation(player.getX(), player.getY()-1);
 					}
 				}
 			}
@@ -164,7 +164,7 @@ public class CAT extends JFrame {
 							if(arrayPanel[j][player2.getY() - 1] == true)
 								return;
 						}
-						player2.setLocation(player2.getX(), player2.getY()-2);
+						player2.setLocation(player2.getX(), player2.getY()-1);
 					}
 				}
 			}
