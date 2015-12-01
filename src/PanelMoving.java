@@ -47,10 +47,17 @@ public class PanelMoving extends JPanel {
 			if( direction ==false)
 			{
 				setLocation(getX(), getY()+5);
+				if(CAT.arrayPanel[CAT.player.getX()][CAT.player.getY() + 1] && CAT.player.isJumping==false) {
+					CAT.player.damageHP(100);
+				}
+				if(CAT.arrayPanel[CAT.player2.getX()][CAT.player2.getY() + 1] && CAT.player2.isJumping==false) {
+					CAT.player2.damageHP(100);
+				}
 				if(getY()==652)
 				{
 					direction = true;
 				}
+				
 			}
 			if( direction ==true)
 			{
@@ -69,6 +76,14 @@ public class PanelMoving extends JPanel {
 				{
 					direction = false;
 				}
+				if(CAT.arrayPanel[CAT.player.getX()+CAT.player.getWidth()][CAT.player.getY() - 1] && CAT.player.isJumping==false) {
+					CAT.player.damageHP(100);
+				}
+				if(CAT.arrayPanel[CAT.player2.getX()+CAT.player2.getWidth()][CAT.player2.getY() - 1] && CAT.player2.isJumping==false) {
+					CAT.player2.damageHP(100);
+				}
+				
+				
 			}
 			
 			for (int i = getX(); i < (getX() + getWidth()); i++)
