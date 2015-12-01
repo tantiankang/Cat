@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
 public class CAT extends JFrame {
@@ -19,7 +21,6 @@ public class CAT extends JFrame {
 		this.setTitle("Cat Shooter Game");
 		this.setFocusable(true);
 		this.setSize(1380,700);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setLayout(null);
 		
@@ -180,5 +181,7 @@ public class CAT extends JFrame {
 			revalidate();
 		}
 	}
+
+
 
 }
