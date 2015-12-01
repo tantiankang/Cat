@@ -44,7 +44,7 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 			this.hp = this.hp - damage;
 		else
 		{
-			JOptionPane.showMessageDialog(null, "Game Over");
+			JOptionPane.showMessageDialog(null, "Angry Cat lost");
 			System.exit(0);
 		}
 	}

@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.vecmath.*;
 
+
 import java.io.*;
 
 import com.sun.j3d.utils.behaviors.vp.*;
@@ -107,7 +108,6 @@ public class ObjLoad extends Applet  {
     {
       System.exit(0);
     } // End of usage
-
 
 
     public void init() {

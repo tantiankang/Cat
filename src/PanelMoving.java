@@ -43,8 +43,6 @@ public class PanelMoving extends JPanel {
 			for (int i = getX(); i < (getX() + getWidth()); i++)
 				for (int j = getY(); j < (getY() + getHeight()); j++)
 					CAT.arrayPanel[i][j] = false;
-				
-			Timer moving = (Timer)e.getSource();
 
 			if( direction ==false)
 			{
@@ -58,9 +56,6 @@ public class PanelMoving extends JPanel {
 			{
 
 				setLocation(getX(), getY()-5);
-				for(int j = CAT.player.getX(); j<CAT.player.getX() + CAT.player.getWidth(); j++){
-					
-				}
 				if(CAT.arrayPanel[CAT.player.getX()][CAT.player.getY() + CAT.player.getHeight()] 
 						|| CAT.arrayPanel[CAT.player.getX()+CAT.player.getWidth()][CAT.player.getY() + CAT.player.getHeight()]){
 					CAT.player.setLocation(CAT.player.getX(), getY() - CAT.player.getHeight());
