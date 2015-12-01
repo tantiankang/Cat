@@ -13,7 +13,10 @@ import com.sun.j3d.utils.universe.*;
 
 import javax.media.j3d.*;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.vecmath.*;
 
 import java.io.*;
@@ -25,7 +28,9 @@ import java.net.MalformedURLException;
 
 public class ObjLoad extends Applet  {
 
+	static MainFrame current;
 	JButton label = new JButton("Press click to start game");
+	JButton change = new JButton("Press to change model");
     private boolean spin = false;
     private boolean noTriangulate = false;
     private boolean noStripify = false;
@@ -33,6 +38,7 @@ public class ObjLoad extends Applet  {
     private URL filename = null;
     private SimpleUniverse u;
     private BoundingSphere bounds;
+    Canvas3D c;
 
     public BranchGroup createSceneGraph() {
 	// Create the root of the branch graph
@@ -113,8 +119,17 @@ public class ObjLoad extends Applet  {
     	label.setSize(400, 50);
     	label.setLocation(300, 600);
     	label.setBorderPainted(false);
+    	
+    	change.setOpaque(true);
+    	change.setBackground(Color.BLACK);
+    	change.setForeground(Color.YELLOW);
+    	change.setFont(new Font("", Font.PLAIN, 30));
+    	change.setSize(400, 50);
+    	change.setLocation(300, 550);
+    	change.setBorderPainted(true);
     	this.add(label);
     	this.setFocusable(true);
+    	this.add(change);
     	label.addActionListener(new ActionListener(){
 
 			@Override
@@ -124,12 +139,62 @@ public class ObjLoad extends Applet  {
 			}
 
     	});
+    	
+    	change.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				// TODO Auto-generated method stub
+				  Object[] options = { "Cat", "Gun" };
+				  int choice = JOptionPane.showOptionDialog(null, 
+				      "Cat or Gun?", 
+				      "Model?", 
+				      JOptionPane.YES_NO_OPTION, 
+				      JOptionPane.QUESTION_MESSAGE, 
+				      null, 
+				      options, 
+				      options[0]);
+				  
+				  if(choice == JOptionPane.YES_OPTION)
+				  {
+					  try {
+							filename = new URL("file:///C://3dmodel//Cat//Cat.obj");
+							destroy();
+
+							new MainFrame(new ObjLoad(filename), 900, 700);
+							
+						} catch (MalformedURLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+				  }
+				  else
+				  {
+					  try {
+							filename = new URL("file:///C://3dmodel//Gun//Cat.obj");
+							destroy();
+
+							new MainFrame(new ObjLoad(filename), 900, 700);
+							
+						} catch (MalformedURLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+				  }
+				  
+				  
+				
+				
+			}
+    		
+    	});
 			
 	if (filename == null) {
             // Applet
             try {
                 URL path = getCodeBase();
-                filename = new URL("file:///C://Users//Asus//Desktop//Java Work//3D//J3DGettingStart//Cat.obj");
+                filename = new URL("file:///C://3dmodel//Lion//Cat.obj");
             }
             catch (MalformedURLException e) {
 	                System.err.println(e);
@@ -140,7 +205,7 @@ public class ObjLoad extends Applet  {
 	setLayout(new BorderLayout());
     GraphicsConfiguration config =SimpleUniverse.getPreferredConfiguration();
 
-    Canvas3D c = new Canvas3D(config);
+    c = new Canvas3D(config);
 	add("Center", c);
 
 	// Create a simple scene and attach it to the virtual universe
@@ -289,12 +354,16 @@ public class ObjLoad extends Applet  {
     }
 
     // Running as an applet
-    public ObjLoad() {
+    public ObjLoad(URL filename) {
+    	this.filename=filename;
     }
 
     public void destroy() {
 	u.cleanup();
+	current.dispose();
+
     }
+    
 
 
     //
@@ -302,7 +371,7 @@ public class ObjLoad extends Applet  {
     // as well as an applet
     //
     public static void main(String[] args) {
-      new MainFrame(new ObjLoad(args), 900, 700);
+     current= new MainFrame(new ObjLoad(args), 900, 700);
     }
 
 
