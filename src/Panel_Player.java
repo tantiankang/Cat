@@ -10,7 +10,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.Timer;
 
 
 public class Panel_Player extends JPanel implements KeyListener{
@@ -19,11 +18,15 @@ public class Panel_Player extends JPanel implements KeyListener{
 	boolean isJumping = false;
 	boolean onGround = true;
 	boolean laserCD = false;
+	boolean left;
+	BufferedImage img;
+	Graphics any;
 	int hp = 100;
 	ConcurrentHashMap<String, Boolean> keyPressedMap = new ConcurrentHashMap<String, Boolean>();
 
 	public Panel_Player(int x , int y ,int x1 , int y1)
 	{
+		
 		this.setBounds(x,y,x1,y1);
 		this.setLayout(null);
 
@@ -34,6 +37,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 		
 		Timer keyTimer = new Timer(25, new KeyTimer());
 		keyTimer.start();
+		setOpaque(false);
 	}
 	
 	void damageHP(int damage){
@@ -48,24 +52,56 @@ public class Panel_Player extends JPanel implements KeyListener{
 	
 	protected void paintComponent(Graphics g)
 	{
-		BufferedImage img=null;
-		try {
-			img = ImageIO.read(new File("player.gif"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		super.paintComponent(g);
-		g.drawImage(img,0,0,this);
-	}
+		any =g;
+		if(left==true)
+		{
+			BufferedImage img2=null;
+			try {
+				img2 = ImageIO.read(new File("CAT1L.gif"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			any.drawImage(img2,0,0,this);
+			repaint();
+			revalidate();
+		}
+		else
+		{
+			BufferedImage img2=null;
+			try {
+				img2 = ImageIO.read(new File("CAT1R.gif"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			any.drawImage(img2,0,0,this);
+			repaint();
+			revalidate();
+		}
+		
+    }
+
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)
+		{
+			left = true;
 			keyPressedMap.replace("left", true);
+			this.paintComponent(any);
+		}
+
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		{
+			left = false;
 			keyPressedMap.replace("right", true);
+			this.paintComponent(any);
+			
+		}
+			
 		if(e.getKeyCode() == KeyEvent.VK_UP)
 			keyPressedMap.replace("jump", true);
 		if(e.getKeyCode() == KeyEvent.VK_L)
@@ -145,5 +181,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 				jumpingTimer.start();
 			}
 		}		
-	}	
+	}
+
+
 }

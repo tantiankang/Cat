@@ -1,3 +1,7 @@
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 import java.awt.*;
@@ -5,10 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 
 
 public class CAT extends JFrame {
-	private Timer timer = new Timer(1000, new TimerListener());
+	private Timer timer = new Timer(33, new TimerListener());
 	public static boolean arrayPanel[][];
 	public static Object playerArray[] = new Object[2];
 	public static JProgressBar hp1 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
@@ -18,6 +24,16 @@ public class CAT extends JFrame {
 	
 	public CAT()
 	{
+		try {
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/Users/Asus/Desktop/nyan.wav").getAbsoluteFile());
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.start();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		this.setTitle("Cat Shooter Game");
 		this.setFocusable(true);
 		this.setSize(1380,700);
@@ -64,12 +80,12 @@ public class CAT extends JFrame {
 		addsetObstacle(0,0,getWidth(),10, true);
 		addsetObstacle(getWidth()-20,0,20,getHeight(), true);
 				
-		player = new Panel_Player(500,200,100,100);
+		player = new Panel_Player(x/35*9,y/16*12,99,61);
 		this.add(player);
 		this.addKeyListener(player);
 		playerArray[0] = player;
 		
-		player2 = new Panel_Player2(300,200,100,100);
+		player2 = new Panel_Player2(x/35*20,y/16*12,99,61);
 		this.add(player2);
 		this.addKeyListener(player2);
 		playerArray[1] = player2;
@@ -81,7 +97,7 @@ public class CAT extends JFrame {
 		
 		timer.start();		
 		
-		//this.add(new Panel_Main());	
+
 						
 		Timer gravityTimer = new Timer(16, new ActionListener(){
 

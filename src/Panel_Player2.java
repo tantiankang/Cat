@@ -18,6 +18,9 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 	boolean isJumping = false;
 	boolean onGround = true;
 	boolean laserCD = false;
+	BufferedImage img;
+	boolean left;
+	Graphics any;
 	int hp = 100;
 	ConcurrentHashMap<String, Boolean> keyPressedMap = new ConcurrentHashMap<String, Boolean>();
 
@@ -33,6 +36,7 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 		
 		Timer keyTimer = new Timer(25, new KeyTimer());
 		keyTimer.start();
+		setOpaque(false);
 	}
 	
 	void damageHP(int damage){
@@ -47,24 +51,53 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 	
 	protected void paintComponent(Graphics g)
 	{
-		BufferedImage img=null;
-		try {
-			img = ImageIO.read(new File("player.gif"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		super.paintComponent(g);
-		g.drawImage(img,0,0,this);
+		any =g;
+		if(left==true)
+		{
+			BufferedImage img2=null;
+			try {
+				img2 = ImageIO.read(new File("CAT2L.gif"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			any.drawImage(img2,0,0,this);
+			repaint();
+			revalidate();
+		}
+		else
+		{
+			BufferedImage img2=null;
+			try {
+				img2 = ImageIO.read(new File("CAT2R.gif"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			any.drawImage(img2,0,0,this);
+			repaint();
+			revalidate();
+		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_A)
+		{
+			left = true;
 			keyPressedMap.replace("left", true);
+			this.paintComponent(any);
+		}
+			
 		if(e.getKeyCode() == KeyEvent.VK_D)
+		{
+			left = false;
 			keyPressedMap.replace("right", true);
+			this.paintComponent(any);
+		}
+			
 		if(e.getKeyCode() == KeyEvent.VK_W)
 			keyPressedMap.replace("jump", true);
 		if(e.getKeyCode() == KeyEvent.VK_G)

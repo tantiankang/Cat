@@ -26,7 +26,7 @@ public class PanelMoving extends JPanel {
 	{
 		BufferedImage img=null;
 		try {
-			img = ImageIO.read(new File("platform.png"));
+			img = ImageIO.read(new File("platform.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
