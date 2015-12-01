@@ -11,7 +11,7 @@ import javax.swing.Timer;
 
 
 public class PanelMoving extends JPanel {
-	private Timer timer = new Timer(200, new MoveListener());
+	private Timer timer = new Timer(100, new MoveListener());
 	public PanelMoving()
 	{
 		
@@ -48,15 +48,16 @@ public class PanelMoving extends JPanel {
 
 			if( direction ==false)
 			{
-				setLocation(getX(), getY()+10);
-				if(getY()==508)
+				setLocation(getX(), getY()+5);
+				if(getY()==652)
 				{
 					direction = true;
 				}
 			}
 			if( direction ==true)
 			{
-				setLocation(getX(), getY()-10);
+
+				setLocation(getX(), getY()-5);
 				for(int j = CAT.player.getX(); j<CAT.player.getX() + CAT.player.getWidth(); j++){
 					
 				}
@@ -69,7 +70,7 @@ public class PanelMoving extends JPanel {
 					CAT.player2.setLocation(CAT.player2.getX(), getY() - CAT.player2.getHeight());
 				}
 				
-				if(getY()==138)
+				if(getY()==132)
 				{
 					direction = false;
 				}

@@ -113,7 +113,7 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 				}
 			}
 			if(keyPressedMap.get("shoot") && (!laserCD)){
-				System.out.println("G key pressed.");
+	
 				laserCD = true;
 				getParent().add(new Bullet(Panel_Player2.this));
 				Timer laserTimer = new Timer(200, new ActionListener(){

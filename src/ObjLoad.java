@@ -135,6 +135,7 @@ public class ObjLoad extends Applet  {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				destroy();
 				new CAT();
 			}
 

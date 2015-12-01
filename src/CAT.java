@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 
 
 public class CAT extends JFrame {
-	private Timer timer = new Timer(33, new TimerListener());
+	private Timer timer = new Timer(1000, new TimerListener());
 	public static boolean arrayPanel[][];
 	public static Object playerArray[] = new Object[2];
 	public static JProgressBar hp1 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
@@ -36,22 +36,24 @@ public class CAT extends JFrame {
 		int x=getWidth();
 		int y =getHeight();
 		//All platforms
-		addsetObstacle(x/15*3,y/10*8,x/15*3,y/10*1, false);
-		addsetObstacle(x/15*9,y/10*8,x/15*3,y/10*1, false);
-		addsetObstacle(x/15*7,y/10*7,x/15*1,y/10*3, false);
-		addsetObstacle(x/15*6,y/10*6,x/15*3,y/10*1, false);
-		addsetObstacle(x/15*7,y/10*5,x/15*1,y/10*1, false);
-		addsetObstacle(x/15*3,y/10*5,x/15*1,y/10*1, false);
-		addsetObstacle(x/15*11,y/10*5,x/15*1,y/10*1, false);
-		//addsetObstacle(x/15*2,y/10*4,x/15*1,y/10*1, false);
-		//addsetObstacle(x/15*12,y/10*4,x/15*1,y/10*1, false);
-		addsetObstacle(x/15*6,y/10*3,x/15*3,y/25*1, false);
+		addsetObstacle(x/35*9,y/16*14,x/35*5,y/16, false);
+		addsetObstacle(x/35*20,y/16*14,x/35*5,y/16, false);
+		addsetObstacle(x/35*6,y/16*12,x/35*3,y/16, false);
+		addsetObstacle(x/35*25,y/16*12,x/35*3,y/16, false);
+		addsetObstacle(x/35*16,y/16*12,x/35*2,y/16*3, false);
+		addsetObstacle(x/35*6,y/16*8,x/35*3,y/16, false);
+		addsetObstacle(x/35*25,y/16*8,x/35*3,y/16, false);
+		addsetObstacle(x/35*11,y/16*6,x/35*4,y/16, false);
+		addsetObstacle(x/35*19,y/16*6,x/35*4,y/16, false);
+		addsetObstacle(x/35*16,y/16*4,x/35*2,y/16*1, false);
+		
+
 		
 		//moving panel
-		PanelMoving left = new PanelMoving(x/35,y/15*3,x/20*2,y/15*1);
+		PanelMoving left = new PanelMoving(x/35,y/16*14,x/35*5,y/16);
 		this.add(left);
 		//moving panel
-		PanelMoving right = new PanelMoving(x/35*31,y/15*3,x/20*2,y/15*1);
+		PanelMoving right = new PanelMoving(x/35*28,y/16*14,x/35*5,y/16);
 		this.add(right);
 		
 
