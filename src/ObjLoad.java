@@ -1,4 +1,3 @@
-
 import com.sun.j3d.loaders.objectfile.ObjectFile;
 import com.sun.j3d.loaders.ParsingErrorException;
 import com.sun.j3d.loaders.IncorrectFormatException;
@@ -96,7 +95,7 @@ public class ObjLoad extends Applet  {
 	} 
 
         // Set up the background
-        Color3f bgColor = new Color3f(0f, 0f, 0f);
+        Color3f bgColor = new Color3f(1f, 1f, 0f);
         Background bgNode = new Background(bgColor);
         bgNode.setApplicationBounds(bounds);
        objRoot.addChild(bgNode);
