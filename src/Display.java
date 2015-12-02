@@ -14,6 +14,7 @@ public class Display extends JPanel {
 	{
 		this.filename=filename;
 		this.setBounds(x,y,sizex,sizey);
+		setOpaque(false);
 	}
 	protected void paintComponent(Graphics g)
 	{
@@ -26,8 +27,6 @@ public class Display extends JPanel {
 			e1.printStackTrace();
 		}
 		g.drawImage(img2,0,0,this);
-		repaint();
-		revalidate();
 	}
 
 }

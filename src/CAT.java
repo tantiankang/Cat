@@ -38,8 +38,8 @@ public class CAT extends JFrame {
 		this.setSize(1380,700);
 		this.setVisible(true);
 		this.setLayout(null);
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setContentPane(new JLabel(new ImageIcon("BG.png")));
 						
@@ -64,10 +64,10 @@ public class CAT extends JFrame {
 		addsetObstacle(x/35*19,y/16*6,x/35*4,y/16, false);
 		addsetObstacle(x/35*16,y/16*4,x/35*2,y/16*1, false);
 		
-		//Display d1 = new Display("CAT1L.gif",x/35*32,y/16*1,x/35*3,y/12*1);
-		//Display d2 = new Display("CAT2R.gif",x/35,y/16*1,x/35*3,y/12*1);
-		//this.add(d1);
-		//this.add(d2);
+		Display d1 = new Display("CAT1L.gif",x/35*32,y/16*1,x/35*3,y/12*1);
+		Display d2 = new Display("CAT2R.gif",x/35,y/16*1,x/35*3,y/12*1);
+		this.add(d1);
+		this.add(d2);
 		
 		//moving panel
 		PanelMoving left = new PanelMoving(x/35,y/16*14,x/35*5,y/16);
