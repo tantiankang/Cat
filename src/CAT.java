@@ -16,9 +16,8 @@ import java.io.IOException;
 public class CAT extends JFrame {
 	private Timer timer = new Timer(33, new TimerListener());
 	public static boolean arrayPanel[][];
-	public static Object playerArray[] = new Object[2];
-	public static JProgressBar hp1 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
-	public static JProgressBar hp2 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
+	public static JProgressBar hp1 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 200);
+	public static JProgressBar hp2 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 200);
 	public static Panel_Player player;
 	public static Panel_Player2 player2;
 	
@@ -33,7 +32,7 @@ public class CAT extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		this.setTitle("Cat Shooter Game");
 		this.setFocusable(true);
 		this.setSize(1380,700);
@@ -86,22 +85,18 @@ public class CAT extends JFrame {
 		player = new Panel_Player(x/35*9,y/16*12,99,61);
 		this.add(player);
 		this.addKeyListener(player);
-		playerArray[0] = player;
 		
 		player2 = new Panel_Player2(x/35*20,y/16*12,99,61);
 		this.add(player2);
 		this.addKeyListener(player2);
-		playerArray[1] = player2;
 		
 		hp2.setBounds(20, 20, 400, 20);
 		hp1.setBounds(getWidth() - 400 - 20, 20, 400, 20);
 		add(hp1);
 		add(hp2);
 		
-		timer.start();		
+		timer.start();	
 		
-
-						
 		Timer gravityTimer = new Timer(16, new ActionListener(){
 
 			@Override
@@ -196,13 +191,10 @@ public class CAT extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			hp1.setValue(((Panel_Player)playerArray[0]).hp);
-			hp2.setValue(((Panel_Player2)playerArray[1]).hp);
+			hp1.setValue(player.hp);
+			hp2.setValue(player2.hp);
 			//repaint();
 			revalidate();
 		}
 	}
-
-
-
 }

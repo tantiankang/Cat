@@ -22,8 +22,7 @@ public class Bullet extends JPanel{
 		
 		else{
 			setBounds(p.getX() + p.getWidth(),p.getY()+ offset, 50, 5);
-		}
-		
+		}		
 		
 		Timer bulletTimer = new Timer(10, new ActionListener(){
 
@@ -47,27 +46,27 @@ public class Bullet extends JPanel{
 					setLocation(getX()+bMove, getY());
 					if (
 							(
-								getX() >= ((Panel_Player2)CAT.playerArray[1]).getX() ||
-								(getX() + getWidth()) >= ((Panel_Player2)CAT.playerArray[1]).getX()
+								getX() >= CAT.player2.getX() ||
+								(getX() + getWidth()) >= CAT.player2.getX()
 							)
 							&&
 							(
-								getX()  <= ((Panel_Player2)CAT.playerArray[1]).getX() + ((Panel_Player2)CAT.playerArray[1]).getWidth() ||
-								(getX() + getWidth())  <= ((Panel_Player2)CAT.playerArray[1]).getX() + ((Panel_Player2)CAT.playerArray[1]).getWidth()
+								getX()  <= CAT.player2.getX() + CAT.player2.getWidth() ||
+								(getX() + getWidth())  <= CAT.player2.getX() + CAT.player2.getWidth()
 							)
 							&&
 							(
-								getY() >= ((Panel_Player2)CAT.playerArray[1]).getY() ||
-								(getY() + getHeight()) >= ((Panel_Player2)CAT.playerArray[1]).getY()
+								getY() >= CAT.player2.getY() ||
+								(getY() + getHeight()) >= CAT.player2.getY()
 							)
 							&&
 							(
-								getY()  <= ((Panel_Player2)CAT.playerArray[1]).getY() + ((Panel_Player2)CAT.playerArray[1]).getHeight() ||
-								(getY() + getHeight())  <= ((Panel_Player2)CAT.playerArray[1]).getY() + ((Panel_Player2)CAT.playerArray[1]).getHeight()
+								getY()  <= CAT.player2.getY() + CAT.player2.getHeight() ||
+								(getY() + getHeight())  <= CAT.player2.getY() + CAT.player2.getHeight()
 							)
 							
 						){
-						((Panel_Player2)CAT.playerArray[1]).damageHP(4);
+						CAT.player2.damageHP(4);
 						removeBullet();
 						stopBulletTimer();
 
@@ -114,27 +113,27 @@ public class Bullet extends JPanel{
 					setLocation(getX()+bMove, getY());
 					if (
 							(
-								getX() >= ((Panel_Player)CAT.playerArray[0]).getX() ||
-								(getX() + getWidth()) >= ((Panel_Player)CAT.playerArray[0]).getX()
+								getX() >= CAT.player.getX() ||
+								(getX() + getWidth()) >= CAT.player.getX()
 							)
 							&&
 							(
-								getX()  <= ((Panel_Player)CAT.playerArray[0]).getX() + ((Panel_Player)CAT.playerArray[0]).getWidth() ||
-								(getX() + getWidth())  <= ((Panel_Player)CAT.playerArray[0]).getX() + ((Panel_Player)CAT.playerArray[0]).getWidth()
+								getX()  <= CAT.player.getX() + CAT.player.getWidth() ||
+								(getX() + getWidth())  <= CAT.player.getX() + CAT.player.getWidth()
 							)
 							&&
 							(
-								getY() >= ((Panel_Player)CAT.playerArray[0]).getY() ||
-								(getY() + getHeight()) >= ((Panel_Player)CAT.playerArray[0]).getY()
+								getY() >= CAT.player.getY() ||
+								(getY() + getHeight()) >= CAT.player.getY()
 							)
 							&&
 							(
-								getY()  <= ((Panel_Player)CAT.playerArray[0]).getY() + ((Panel_Player)CAT.playerArray[0]).getHeight() ||
-								(getY() + getHeight())  <= ((Panel_Player)CAT.playerArray[0]).getY() + ((Panel_Player)CAT.playerArray[0]).getHeight()
+								getY()  <= CAT.player.getY() + CAT.player.getHeight() ||
+								(getY() + getHeight())  <= CAT.player.getY() + CAT.player.getHeight()
 							)
 							
 						){
-						((Panel_Player)CAT.playerArray[0]).damageHP(4);
+						CAT.player.damageHP(4);
 						removeBullet();
 						stopBulletTimer();
 
@@ -150,7 +149,6 @@ public class Bullet extends JPanel{
 	
 	void removeBullet(){
 		getParent().remove(this);
-
 	}
 	
 	void stopBulletTimer(){
@@ -161,5 +159,4 @@ public class Bullet extends JPanel{
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
-
 }

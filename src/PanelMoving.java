@@ -94,14 +94,11 @@ public class PanelMoving extends JPanel {
 				if(CAT.arrayPanel[CAT.player2.getX()][CAT.player2.getY() - 1] && CAT.player2.isJumping==false) {
 					CAT.player2.damageHP(100);
 				}
-				
-				
 			}
 			
 			for (int i = getX(); i < (getX() + getWidth()); i++)
 				for (int j = getY(); j < (getY() + getHeight()); j++)
 					CAT.arrayPanel[i][j] = true;
-
+		}
 	}
-
-}}
+}

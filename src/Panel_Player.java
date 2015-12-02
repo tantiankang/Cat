@@ -18,10 +18,12 @@ public class Panel_Player extends JPanel implements KeyListener{
 	boolean isJumping = false;
 	boolean onGround = true;
 	boolean laserCD = false;
+	boolean bombCD = false;
 	boolean left;
 	BufferedImage img;
 	Graphics any;
-	int hp = 100;
+	int maxHP = 200;
+	int hp = maxHP;
 	ConcurrentHashMap<String, Boolean> keyPressedMap = new ConcurrentHashMap<String, Boolean>();
 
 	public Panel_Player(int x , int y ,int x1 , int y1)
@@ -34,6 +36,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 		keyPressedMap.put("right", false);
 		keyPressedMap.put("shoot", false);
 		keyPressedMap.put("jump", false);
+		keyPressedMap.put("bomb", false);
 		
 		Timer keyTimer = new Timer(25, new KeyTimer());
 		keyTimer.start();
@@ -64,8 +67,6 @@ public class Panel_Player extends JPanel implements KeyListener{
 				e1.printStackTrace();
 			}
 			any.drawImage(img2,0,0,this);
-			repaint();
-			revalidate();
 		}
 		else
 		{
@@ -77,10 +78,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 				e1.printStackTrace();
 			}
 			any.drawImage(img2,0,0,this);
-			repaint();
-			revalidate();
-		}
-		
+		}		
     }
 
 
@@ -98,14 +96,15 @@ public class Panel_Player extends JPanel implements KeyListener{
 		{
 			left = false;
 			keyPressedMap.replace("right", true);
-			this.paintComponent(any);
-			
+			this.paintComponent(any);			
 		}
 			
 		if(e.getKeyCode() == KeyEvent.VK_UP)
 			keyPressedMap.replace("jump", true);
 		if(e.getKeyCode() == KeyEvent.VK_L)
-			keyPressedMap.replace("shoot", true);		
+			keyPressedMap.replace("shoot", true);
+		if(e.getKeyCode() == KeyEvent.VK_K)
+			keyPressedMap.replace("bomb", true);
 	}
 
 	@Override
@@ -116,6 +115,8 @@ public class Panel_Player extends JPanel implements KeyListener{
 			keyPressedMap.replace("right", false);
 		if(e.getKeyCode() == KeyEvent.VK_L)
 			keyPressedMap.replace("shoot", false);
+		if(e.getKeyCode() == KeyEvent.VK_K)
+			keyPressedMap.replace("bomb", false);
 		if(e.getKeyCode() == KeyEvent.VK_UP)
 			keyPressedMap.replace("jump", false);		
 	}
@@ -163,6 +164,20 @@ public class Panel_Player extends JPanel implements KeyListener{
 				laserTimer.setRepeats(false);
 				laserTimer.start();
 			}
+			if(keyPressedMap.get("bomb") && !bombCD && CAT.arrayPanel[getX()+ getWidth()/2][getY() + getHeight() + 1]){
+				bombCD = true;
+				getParent().add(new TimerBomb(Panel_Player.this));
+				Timer bombTimer = new Timer(5000, new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						bombCD = false;						
+					}					
+				});
+				
+				bombTimer.setRepeats(false);
+				bombTimer.start();
+			}
 			if(keyPressedMap.get("jump")){
 				if(!onGround)
 					return;
@@ -179,8 +194,6 @@ public class Panel_Player extends JPanel implements KeyListener{
 				jumpingTimer.setRepeats(false);
 				jumpingTimer.start();
 			}
-		}		
+		}
 	}
-
-
 }
