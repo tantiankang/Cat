@@ -9,12 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
 
 public class CAT extends JFrame {
 	private Timer timer = new Timer(33, new TimerListener());
+	private Timer gravityTimer;
+	private Timer gravityTimer2;
 	public static boolean arrayPanel[][];
 	public static JProgressBar hp1 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 200);
 	public static JProgressBar hp2 = new JProgressBar(JProgressBar.HORIZONTAL, 0, 200);
@@ -99,7 +102,7 @@ public class CAT extends JFrame {
 		
 		timer.start();	
 		
-		Timer gravityTimer = new Timer(16, new ActionListener(){
+		gravityTimer = new Timer(16, new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -134,7 +137,7 @@ public class CAT extends JFrame {
 		});
 		gravityTimer.start();
 		
-		Timer gravityTimer2 = new Timer(16, new ActionListener(){
+		gravityTimer2 = new Timer(16, new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -198,5 +201,12 @@ public class CAT extends JFrame {
 			//repaint();
 			revalidate();
 		}
+	}
+	
+	public void closeFrame(){
+		gravityTimer.stop();
+		gravityTimer2.stop();
+		setVisible(false);
+		dispose();
 	}
 }

@@ -19,6 +19,7 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 	boolean onGround = true;
 	boolean laserCD = false;
 	boolean bombCD = false;
+	boolean isDead = false;
 	BufferedImage img;
 	boolean left;
 	Graphics any;
@@ -47,8 +48,19 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 			this.hp = this.hp - damage;
 		else
 		{
-			JOptionPane.showMessageDialog(null, "Angry Cat lost");
-			System.exit(0);
+			if(!isDead){
+				isDead = true;
+				PanelEndGame end = new PanelEndGame();
+				int n = JOptionPane.showConfirmDialog(null, "Angry cat lost. Restart game?", "Game ended", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+				if(n == 1)
+					System.exit(0);
+				else
+					driverNo3d.restartProgram();
+				/*
+				JOptionPane.showMessageDialog(null, "Angry Cat lost");
+				System.exit(0);
+				*/
+			}
 		}
 	}
 	
