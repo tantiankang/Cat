@@ -50,7 +50,6 @@ public class Panel_Player2 extends JPanel implements KeyListener{
 		{
 			if(!isDead){
 				isDead = true;
-				PanelEndGame end = new PanelEndGame();
 				int n = JOptionPane.showConfirmDialog(null, "Angry cat lost. Restart game?", "Game ended", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 				if(n == 1)
 					System.exit(0);
