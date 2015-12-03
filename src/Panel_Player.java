@@ -72,7 +72,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 		{
 			BufferedImage img2=null;
 			try {
-				img2 = ImageIO.read(new File("CAT1L.gif"));
+				img2 = ImageIO.read(getClass().getResource("CAT1L.gif"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -83,7 +83,7 @@ public class Panel_Player extends JPanel implements KeyListener{
 		{
 			BufferedImage img2=null;
 			try {
-				img2 = ImageIO.read(new File("CAT1R.gif"));
+				img2 = ImageIO.read(getClass().getResource("CAT1R.gif"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

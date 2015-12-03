@@ -27,7 +27,7 @@ public class CAT extends JFrame {
 	public CAT()
 	{
 		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/Users/Asus/Desktop/nyan.wav").getAbsoluteFile());
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("1.wav"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.start();
@@ -44,7 +44,7 @@ public class CAT extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setContentPane(new JLabel(new ImageIcon("BG.png")));
+		setContentPane(new JLabel(new ImageIcon(getClass().getResource("BG.png"))));
 						
 		arrayPanel = new boolean[getWidth()+1][getHeight()+1];
 		for (int i = 0; i < getWidth(); i++){

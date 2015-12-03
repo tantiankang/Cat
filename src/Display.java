@@ -21,7 +21,7 @@ public class Display extends JPanel {
 		super.paintComponent(g);
 		BufferedImage img2=null;
 		try {
-			img2 = ImageIO.read(new File(filename));
+			img2 = ImageIO.read(getClass().getResource(filename));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
